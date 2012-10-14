@@ -1,0 +1,21 @@
+@(result : String, conversionForm: Form[Long])
+
+@import helper._
+
+@main("timeconv") {
+
+<h1>timeconv</h1>
+
+<h2>Convert your Java miliseconds</h2>
+
+<h3>@result</h3>
+
+@form(routes.Application.conversion) {
+
+@inputText(conversionForm("millis"))
+
+<input type="submit" value="Compute">
+
+}
+
+}
