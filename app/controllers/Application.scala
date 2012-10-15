@@ -24,6 +24,7 @@ object Application extends Controller {
           val date : java.util.Date = new java.util.Date()
           date.setTime(java.lang.Long.valueOf(millis))
           Ok(views.html.index(date.toString(), conversionForm))
+
       }
     )
   }
