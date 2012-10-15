@@ -1,7 +1,28 @@
+@lightRed:   #fdd;
+@lightGreen: #dfd;
+@lightBlue:  #ddf;
+ 
+@defaultThemeColor:@lightBlue;
+ 
 .shape{
     display:inline-block;
-    width:200px;
-    height:200px;
-    background:#ddf;
+    width:1024px;
+    height:1024px;
+    background:@defaultThemeColor;
     margin:20px;
 }
+
+.box-shadow (@x: 0px, @y: 3px, @blur: 5px, @alpha: 0.5) {
+	-webkit-box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+	-moz-box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+	box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+}
+
+#shape1{
+    -webkit-border-radius:100px;
+       -moz-border-radius:100px;
+            border-radius:100px;
+            .box-shadow(5px, 5px, 6px, 0.3);
+}
+
+

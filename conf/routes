@@ -5,5 +5,7 @@
 # Home page
 GET     /                           controllers.Application.index
 
-GET     /conversions                  controllers.Application.conversions
-POST    /conversion                  controllers.Application.conversion
+GET     /conversions                controllers.Application.conversions
+POST    /conversion                 controllers.Application.conversion
+
+GET  /assets/*file                  controllers.Assets.at(path="/public", file)

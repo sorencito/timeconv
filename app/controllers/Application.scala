@@ -16,16 +16,14 @@ object Application extends Controller {
     Ok(views.html.index("no time computed", conversionForm))
   }
 
-  def conversion = Action { implicit request =>
+  def conversion = Action {
+    implicit request =>
     conversionForm.bindFromRequest.fold(
       errors => BadRequest(views.html.index("nothing to compute", errors)),
       millis => {
-        if (millis > 0) {
           val date : java.util.Date = new java.util.Date()
           date.setTime(java.lang.Long.valueOf(millis))
           Ok(views.html.index(date.toString(), conversionForm))
-        } else
-          Ok(views.html.index("no time computed", conversionForm))
       }
     )
   }
