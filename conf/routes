@@ -8,4 +8,5 @@ GET     /                           controllers.Application.index
 GET     /conversions                controllers.Application.conversions
 POST    /conversion                 controllers.Application.conversion
 
-GET  /assets/*file                  controllers.Assets.at(path="/public", file)
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -1,22 +1,72 @@
 @lightRed:   #fdd;
 @lightGreen: #dfd;
 @lightBlue:  #ddf;
- 
-@defaultThemeColor:@lightBlue;
+@darkBlue:   #587094;
 
+@defaultThemeColor:@lightBlue;
 
 .shape{
     display:inline-block;
     width:1024px;
-    height:1024px;
+    height:400px;
+    padding: 10px;
     background:@defaultThemeColor;
     margin:20px;
+}
+
+section {
+    padding: 10px 30px;
 }
 
 .box-shadow (@x: 0px, @y: 3px, @blur: 5px, @alpha: 0.5) {
 	-webkit-box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
 	-moz-box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
 	box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    font-family: Helvetica, Arial;
+    color: #3A4244;
+}
+
+h3 {
+    color: @darkBlue;
+}
+
+header {
+    padding: 10px 30px;
+    background: @darkBlue;
+    font-size: 24px;
+}
+
+#conversionForm dd.info {
+    display: none;
+}
+
+#conversionForm dd.error {
+    margin-left: 10px;
+    font-size: 12px;
+    color: #c00;
+}
+
+#conversionForm label {
+    font-size: 14px;
+}
+
+#conversionForm dl {
+    background: #FAFAFA;
+    padding: 10px;
+}
+
+#conversionForm dl.error {
+    background: #FBDDE6;
+}
+
+#conversionForm dt {
+    display: inline-block;
+    width: 160px;
 }
 
 #shape1{
@@ -31,9 +81,9 @@
        -moz-border-radius:15px;
             border-radius:15px;
             .box-shadow(5px, 5px, 6px, 0.3);
-            width:210px;
-                height:170px;
-                background:@lightGreen;
+            width:250px;
+            height:170px;
+            background:@lightGreen;
 }
 
 .computeButton {
@@ -58,5 +108,22 @@
 }.computeButton:active {
 	position:relative;
 	top:1px;
+}
+
+.buttons {
+    background: #536565;
+    padding: 10px;
+    margin-top: 30px;
+}
+
+.buttons input, .buttons a {
+    border: 1px solid #2F3A3A;
+    background: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #000;
 }
 

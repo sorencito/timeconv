@@ -7,20 +7,23 @@
 <br>
 <br>
 
-<h1>TimeConv</h1>
-
-<h2>Convert your Java miliseconds</h2>
+<h2>Convert your Java miliseconds.</h2>
 
 <h3>@result</h3>
-<div id="shape2" align="center" class="shape">
 
-@form(routes.Application.conversion) {
+<div id="shape2" class="shape">
 
-@inputText(conversionForm("millis"))
+@form(routes.Application.conversion, args = 'id -> "conversionForm") {
 
-<input type="submit" value="Compute" class="computeButton">
+    @inputText(
+        field = conversionForm("millis"),
+        args = '_label -> "milliseconds:", 'placeholder -> ("now is " + java.lang.System.currentTimeMillis())
+    )
+
+    <input type="submit" value="Compute" class="computeButton">
 
 }
-    </div>
+
+</div>
 
 }
