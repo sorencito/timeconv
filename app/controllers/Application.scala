@@ -27,7 +27,10 @@ object Application extends Controller {
 
           val marketCentreTime = timeInAnotherTimezone.withZone(DateTimeZone.forID("Europe/Berlin"))
 
-          Ok(views.html.index(marketCentreTime.toString(DateTimeFormat.forPattern("MMMM, yyyy, hh:mm:ss")), conversionForm))
+          Ok(views.html.index(marketCentreTime.toString(DateTimeFormat.forPattern("MMMM, yyyy, hh:mm:ss")) + " Europe/Berlin"+
+            " <------> " +
+            timeInAnotherTimezone.withZone(DateTimeZone.forID("Europe/London")).toString(DateTimeFormat.forPattern("MMMM, yyyy, hh:mm:ss")) + " UTC"
+            , conversionForm))
 
       }
     )
