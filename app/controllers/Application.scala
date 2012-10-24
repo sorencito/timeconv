@@ -1,6 +1,5 @@
 package controllers
 
-import play.api._
 import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
@@ -14,26 +13,31 @@ object Application extends Controller {
   }
 
   def conversions = Action {
-    Ok(views.html.index("no time computed", conversionForm))
+    Ok(views.html.index("no time computed", "", conversionForm))
   }
 
   def conversion = Action {
     implicit request =>
-    conversionForm.bindFromRequest.fold(
-      errors => BadRequest(views.html.index("nothing to compute", errors)),
-      millis => {
+      conversionForm.bindFromRequest.fold(
+        errors => BadRequest(views.html.index("bad user input", "", errors)),
+        millis => {
+          // get dateTime object from user request
+          val dateTime = new DateTime(millis)
 
-          val timeInAnotherTimezone = new DateTime(millis)
+          // do the conversion
+          val europeTime = dateTime.withZone(DateTimeZone.forID("Europe/Berlin"))
+          val utcTime = dateTime.withZone(DateTimeZone.forID("UTC"))
 
-          val marketCentreTime = timeInAnotherTimezone.withZone(DateTimeZone.forID("Europe/Berlin"))
+          // init result display pattern
+          val pattern = "dd. MMMM, yyyy, hh:mm:ss.SS"
 
-          Ok(views.html.index(marketCentreTime.toString(DateTimeFormat.forPattern("dd. MMMM, yyyy, hh:mm:ss")) + " Europe/Berlin"+
-            " <<<<>>>> " +
-            timeInAnotherTimezone.toString(DateTimeFormat.forPattern("dd. MMMM, yyyy, hh:mm:ss")) + " server time"
-            , conversionForm))
+          Ok(views.html.index(
+            europeTime.toString(DateTimeFormat.forPattern(pattern)) + " (Europe/Hamburg)",
+            utcTime.toString(DateTimeFormat.forPattern(pattern)) + " (UTC)",
+            conversionForm))
 
-      }
-    )
+        }
+      )
   }
 
   val conversionForm = Form(
