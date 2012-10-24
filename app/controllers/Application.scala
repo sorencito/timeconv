@@ -4,7 +4,8 @@ import play.api._
 import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
-
+import org.joda.time._
+import org.joda.time.format._
 
 object Application extends Controller {
 
@@ -21,9 +22,12 @@ object Application extends Controller {
     conversionForm.bindFromRequest.fold(
       errors => BadRequest(views.html.index("nothing to compute", errors)),
       millis => {
-          val date : java.util.Date = new java.util.Date()
-          date.setTime(java.lang.Long.valueOf(millis))
-          Ok(views.html.index(date.toString(), conversionForm))
+
+          val timeInAnotherTimezone = new DateTime(millis)
+
+          val marketCentreTime = timeInAnotherTimezone.withZone(DateTimeZone.forID("Europe/Berlin"))
+
+          Ok(views.html.index(marketCentreTime.toString(DateTimeFormat.forPattern("MMMM, yyyy, hh:mm:ss")), conversionForm))
 
       }
     )
